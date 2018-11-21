@@ -1,0 +1,71 @@
+COSC 3410 - Programming Languages
+Assignment #1
+Due: Wednesday, Sept 5, 2018
+For each of the problems below, submit a file containing the define for the function and also a sample run showing the test cases listed with the problem and at least two other test cases which you make up.
+Problems should be submitted using the D2L dropbox by 11:59PM on Wednesday.
+
+I would like each function to be accompanied by a list of the cases that you have divided the input into and a description of the output in each case. Try to use normal English to write these (rather than just sort of repeating the Scheme code). This could be in comments in the Scheme code file or in a separate document if you prefer.
+
+I would also like the cond pairs to be enclosed in square brackets rather than parentheses (like in Krishnamurthy's examples and my class examples). This should help you keep track of whether you have a test and a value in each pair.
+
+Finally, each function should have comments saying who wrote it (once per file is OK) and giving the "signature" of the function. That is, the types of the parameters and result. Again Krishnamurthy gives these as one-line comments when introducing new functions. For instance, member? (from Little Schemer p.22) would be
+
+  ; member?: atom list --> boolean
+Do all three problems. Be sure to use good functional style.
+
+1. Write a function in-range? which takes two numbers (limits) and a list of numbers as parameters and returns true (#t) if each number in the list is between the given limits (i.e. greater than or equal to the first limit and less than or equal to the second). You can assume that the first limit will always be less than or equal to the second limit. Numbers can be compared using the built-in functions <, <=, >, and >=.
+
+Examples:
+
+  (in-range? 3 12 '(5 3 9) )
+ #t
+ 
+  (in-range? 3 12 '(5 13 9) )
+ #f
+ 
+  (in-range? 4 4 '(4 4 4 4 4) )
+ #t
+ 
+  (in-range? 3 12 '() )
+ #t
+ 
+2. Write a function atom-count which takes an atom and a list of atoms as parameters and returns the number of times the given atom occurs in the list.
+
+Examples:
+
+  (atom-count 'b '(a b g a b c b) )
+ 3
+
+  (atom-count 'g '(a b g a b c b) )
+ 1
+
+  (atom-count 'w '(a b g a b c b) )
+ 0
+ 
+  (atom-count 'b '() )
+ 0
+
+  (atom-count 'x '(x xx x xxx x xxxx x) )
+ 4
+3. Write a function lookup which takes an atom and a list of pairs as parameters and returns an expression. Each pair in the second argument has an atom as the first entry and a Scheme value as the second. The function should find the first pair in the list whose first entry matches the given atom and then return the second half of that pair. Watch the examples closely to make sure your code doesn't add or leave out expected parentheses. If the atom is not found in the list of pairs, the function should return a special atom UNKNOWN. I still want good recursive style.
+
+Examples:
+
+  (lookup 'b '((a 34)(b 77)(g 6)) )
+ 77
+
+  (lookup 'a '((a "apple")(b "boy")(g "gate")) )
+ "apple"
+
+  (lookup 'c '((a 34)(b 77)(g 6)) )
+ 'UNKNOWN
+
+  (lookup 'food '((lodging 250.0)(gas 98.60)(food 120.44)) )
+ 120.44
+
+  (lookup 15 '((12 (2 3)) (15 (3 5)) (30 (2 3 5)) (99 (3 11))) )
+ '(3 5)
+
+  (lookup 'a '() )
+ 'UNKNOWN
+ 
