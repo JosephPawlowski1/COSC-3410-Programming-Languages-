@@ -1,0 +1,64 @@
+Assignment #6
+COSC 3410 - Prolog
+Solving Puzzles
+Due date: Wednesday, Nov 7, 2018
+GOAL: Write a Prolog program to solve a logic puzzle. I didn't intend for the assignment itself to sound like a logic puzzle, but things sort of got carried away. There are several options in this assignment.
+
+TEAMS: You can work on this assignment in teams of two or by yourself.
+
+OPTION I (this would earn a B) is very much like the Homes puzzle:
+
+Four students: Naomi, Salim, Edward, and Joan are trying to arrange an Uber Eats delivery, but they like different things. Use the clues to figure out each student's favorite food.
+
+Clues
+
+1. Naomi doesn't like either pizza or burgers.
+2. Salim won't eat salads.
+3. Edward wants tacos.
+4. Joan isn't fond of pizza.
+METHOD: I'd suggest recording each preference with a structure like eats(X,Y) to mean that student X likes eating food Y. Then keep a list of preference structures and list membership requirements on that list (like in the homes example). So, instead of
+
+homes([home(norm,_), home(alex,_), ...]).
+to define the initial information, you might do something like
+order([eats(naomi,_), eats(salim,_), ...]).
+Then use the clues to create membership subgoals (like in the homes example). The easiest way to deal with the clues which imply that someone doesn't like something is to list the remaining foods as options (using ; for OR).
+OPTION II (this would earn an A-) is very much like the Zebra puzzle:
+
+Four courses are taught, one per hour, starting from 9AM to Noon. Each course meets in a specified classroom, has a subject and teacher and each teacher uses a distinctive method of presenting their lecture. Based on the clues below, figure out who teaches which classes, where and when.
+
+Clues:
+
+1. Artificial Intelligence is taught in Room 310.
+2. The Hardware teacher uses a video projector.
+3. Ms. Saunders teaches in Room 001.
+4. The Compilers class meets in the hour before the class in Room 126.
+5. The course in Room 001 uses clickers.
+6. Mr. Shariar uses the whiteboard.
+7. Ms. Cheng teaches the hour before Operating Systems is taught.
+8. Room 112 holds a class at 11:00AM.
+9. Mr. Adams teaches in Room 126.
+10. A podium is used in the class at 9:00AM.
+METHOD: I'd suggest recording each course with a structure like course(S,R,T,P) to mean that subject S is taught in room R by teacher T using presentation technique P. Then keep a list of course structures in order by class time and state membership requirements on that list (like in the zebra example). So, instead of
+
+houses([house(_,_,_,_,_), house(_,_,_,_,_), ...]).
+to define the initial information, you might do something like
+courses([course(_,_,_,_), course(_,_,_,_), ...]).
+Then use the clues to create membership subgoals (like in the zebra example). You may need to define a predicate to deal with the clues indicating that certain courses come just before or after another course.
+IN GENERAL: Remember, the goal here is to write a Prolog program which consists of versions of the above clues and let the computer solve the problem. Don't just solve the problem yourself and then have the computer print that.
+
+EXTRA: To earn an A you could do BOTH Option I and Option II. Or you could do some other logic puzzle (along with one of I or II). Here's another puzzle:
+
+Six suspects (Alice, Olivia, Sam, Nancy, Edward, Pedro) are questioned by the police. Use the following clues to determine in which order the suspects were questioned.
+
+Clues
+
+1. Alice was either the first or the last suspect questioned.
+2. Olivia was the third suspect questioned.
+3. Sam was neither the first nor the second suspect questioned.
+4. Nancy was questioned before Sam and after Pedro.
+5. Edward was questioned before Olivia and after another woman
+(the women are Alice, Olivia, and Nancy).
+You'll probably have to think (and maybe experiment) a bit to figure out how to describe this in Prolog.
+
+HAND-IN: Your Prolog source code (the .pl file) and a sample run showing your solution for each problem which you worked on.
+

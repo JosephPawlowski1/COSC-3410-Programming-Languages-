@@ -1,0 +1,28 @@
+COSC 3410 - Programming Languages
+Quickie #1
+Due date: Oct 10, 2018
+This is a short assignment involving functions and your CWAE interpreter from HW #3.
+TEAMS: You can work in teams of two or by yourself.
+
+GOAL: Expand the CWAE interpreter to handle functions (as developed in Chapter 4 of the text) and write two recursive programs in the resulting language (F1CWAE?).
+
+METHOD: As Krishnamurthi mentions on p.30, his F1WAE language would support recursive function calls, but with no conditional expression, you can't provide a base case for the recursion. We can easily overcome this problem by adding the function definitions/calls to the CWAE language implemented in HW #3.
+
+The final code for the F1WAE interpreter can be found on p.31 of the text and also in the class examples file oct1.rkt. You should add the data types and functions found there involving function definition and calls into your CWAE interpreter and expand existing functions (e.g. parse, calc, ...) to handle the extra feature. Expanded error checking for the additional language features would be fine, but is not required for this assignment.
+
+Here's an example of a recursive function that should be able to run in your finished interpreter:
+
+ {sum-digits 6430761}
+with the function definition list:
+ (list (fundef 'sum-digits 'n ;; Add up the digits of n
+              (parse '{if<0 {- n 10} ;; check if n is a single digit
+                        n
+                        {with {q {/ n 10}} ;; otherwise, pull off the last digit
+                                           ;; and recurse
+                           {with {r {- n {* q 10}}}
+                              {+ r {sum-digits q}} }}
+                      })
+      ))
+Your assignment is to write two more such functions. You might implement some of the typical recursive examples like factorial or fibonacci numbers, or you could try something more exotic. I hope this part will be at least a little fun.
+HAND-IN: Submit the Scheme code for your expanded interpreter and fundef descriptions of your recursive functions. Your functions should include a brief description of what they compute.
+

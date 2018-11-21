@@ -1,0 +1,23 @@
+COSC 3410 - Assignment #4
+FORTRAN - Numerical Simulation
+Due Date: Wednesday, Oct 3
+A few years ago, I helped a Chemistry PhD student who was studying random placement of molecules in a crystal lattice. One of the things he thought he could measure in the lab, was the number of molecules that had no neighboring molecules in the lattice. His question to me was how he could check whether his number was reasonable. I suggested a computer simulation of the experiment, which he did. In this assignment, you are asked to implement a simplified version of his simulation. While he had a complicated lattice in three dimensions, we will just model a two dimensional, square lattice.
+
+GOAL: Write a Fortran program which simulates placing 100 molecules into the boxes of a 20 by 20 square grid. Each box can hold at most one molecule. Your program should count and report how many molecules in the final arrangement have no neighbors. Two molecules are considered neighbors if they are directly above or below or directly side by side (diagonals don't count). For instance, if molecules were placed at the locations labelled by letters in the following 5 by 5 grid:
+
+
+       * * * * b
+       a * d c *
+       * * * * *
+       * f * * e
+       * * * * g
+we would say that d and c are neighbors and e and g are neighbors, but b and c are not. In this example, the three molecules a, b, and f have no neighbors. Your program would report that 3 of the 7 molecules are isolated. Your program should perform the experiment of placing 100 molecules into an empty lattice and reporting the results five times. The results should be neatly displayed in some readable format. Your final output should not include the full picture of the lattice (although that might be useful during debugging).
+METHOD: This problem has many natural opportunities to use subroutines and functions. In particular, I would like your program to use a subroutine MOLPUT to place the molecules into the grid. MOLPUT should take a single argument, which is a 20 by 20 integer array, and returns with one additional molecule added to the array. This subroutine, therefore, needs to generate random subscripts until it finds an empty position in the array and then mark that a molecule has been placed there. To perform an experiment, you can then just clear the array, call MOLPUT 100 times, and then check the results.
+
+The sample program roll.f demonstrates how to generate and use random numbers. Also grid.f shows how to declare and use a 2-dimensional array.
+
+You can find some reminders about compiling fortran programs at the Fortran tips page.
+
+HAND-IN: Your program listing along with a sample run to D2L. Your program should include a comment saying who wrote it.
+
+Back to COSC 3410 homepage. 

@@ -1,0 +1,37 @@
+COSC 3410 - Programming Languages
+Fall 2018
+Assignment #7
+Due date: Monday, Nov 19
+Goal: Write an interpreter for the JILL language described below. Your interpreter should use an environment and store to implement variables. The parser should convert any "with" expressions into the corresponding "fun" expression (see p.45 of Krishnamurthi). Both of these features are implemented in the example code nov5-VFAE.rkt.
+Do each of the following three tasks:
+
+1. Modify seqn to permit an arbitrary number of sub-expressions (as shown in the grammar), not just two. They should be evaluated in left-to-right order. The value of the seqn expression is the value of the last sub-expression. Provide a sample run of at least one program which uses this expanded feature.
+
+2. Modify the interpreter to evaluate addition from right to left instead of left-to-right. Construct a test case that yields different answers in the two cases and show sample runs of that test case evaluated in the original interpreter (left-to-right) and the modified interpreter (right-to-left).
+
+3. Construct a test case that behaves differently if functions are defined using fun (call-by-value) or if the same function definitions are used with refun (call-by-reference). Supply sample runs of the two cases.
+
+Teams: You can work in teams of two or by yourself.
+
+Language spec: The strings of letters in the book's language names were getting ridiculous, so I decided to just name this language "JILL" (it doesn't stand for anything). Here's the grammar for JILL expressions:
+
+<JILL> ::= <num>
+         | <id>
+         | {+ <JILL> <JILL>}
+         | {- <JILL> <JILL>}
+         | {* <JILL> <JILL>}
+         | {/ <JILL> <JILL>}           ;; integer divide
+         | {- <JILL>}
+         | {= <JILL> <JILL>}           ;; equality test
+         | {< <JILL> <JILL>}           ;; less than test
+         | {with {<id> <JILL>} <JILL>} ;; using fun rewrite
+         | {if <JILL> <JILL> <JILL>}
+         | {fun {<id>} <JILL>}
+         | {refun {<id>} <JILL>}       ;; fun using call-by-refr
+         | {<JILL> <JILL>}             ;; function application
+         | {make <id> <JILL>}          ;; variable assignment
+         | {show <JILL>}
+         | {seqn <JILL> <JILL> ...}
+Notes: I'm replacing the "if<0" with a more general "if" (like in Scheme) and conditional expressions. The values of the conditional expressions should be boolean, which means you'll want to extend the possible values from just numV and closureV to include booleanV. You can use the Scheme boolean values #t and #f for true and false.
+Remember that "quotient" is the integer divide function in Scheme.
+
